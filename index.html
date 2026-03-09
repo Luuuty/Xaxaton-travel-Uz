@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShield AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="app-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div>
+          <p class="eyebrow" data-i18n="brandTag">AI platform for cyber resilience</p>
+          <h1 data-i18n="heroTitle">CyberShield AI</h1>
+        </div>
+        <div class="toolbar">
+          <label class="language-switcher">
+            <span data-i18n="languageLabel">Language</span>
+            <select id="languageSelect" aria-label="Language switcher">
+              <option value="ru">RU</option>
+              <option value="uz">UZ</option>
+              <option value="en">EN</option>
+            </select>
+          </label>
+        </div>
+      </nav>
+
+      <section class="hero-grid neon-layout">
+        <div class="map-panel">
+          <div class="map-scan"></div>
+          <div class="map-header">
+            <p class="eyebrow accent" data-i18n="heroBadge">Hackathon MVP</p>
+            <h2 class="pixel-title" data-i18n="heroSubtitle">Платформа для анализа, предсказания и предотвращения киберугроз</h2>
+            <p class="hero-text" data-i18n="heroText">
+              Прототип анализирует фишинг, ransomware и deepfake-сигналы, оценивает риск инцидента и выдает приоритетные действия для SOC-команды.
+            </p>
+          </div>
+
+          <div class="map-stage" aria-hidden="true">
+            <div class="map-caption-row">
+              <span id="mapLocaleLabel" class="map-caption">RU Threat Sphere</span>
+              <span id="mapTargetLabel" class="map-caption accent">Eurasia sector</span>
+            </div>
+
+            <div class="threat-globe active" data-map="ru">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1"></span>
+                <span class="node n2 active"></span>
+                <span class="node n3"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="threat-globe" data-map="en">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1 active"></span>
+                <span class="node n2"></span>
+                <span class="node n3"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="threat-globe" data-map="uz">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1"></span>
+                <span class="node n2"></span>
+                <span class="node n3 active"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="signal-legend">
+              <span class="legend-pill">Email</span>
+              <span class="legend-pill">Identity</span>
+              <span class="legend-pill">Network</span>
+              <span class="legend-pill">Voice</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="node-card">
+          <div class="node-media">
+            <div class="node-media-overlay"></div>
+            <p id="activeCenterRegion" class="node-region">UZ-CERT</p>
+          </div>
+          <div class="node-body">
+            <p class="eyebrow" data-i18n="liveScore">Live Threat Score</p>
+            <h3 id="activeCenterTitle" class="pixel-card-title">Phishing Node (UZ)</h3>
+            <p id="activeCenterMeta" class="muted">mail-gateway-live / regional anomaly cluster</p>
+
+            <div class="score-card compact">
+              <div class="score-ring" id="scoreRing">
+                <span id="riskScore">72</span>
+              </div>
+              <div class="score-copy">
+                <p id="riskLevel" class="risk-level critical" data-i18n="riskHigh">Высокий риск</p>
+                <p id="riskSummary" class="muted" data-i18n="defaultSummary">
+                  Обнаружена аномальная активность в почтовом трафике и попытка запуска подозрительного файла.
+                </p>
+              </div>
+            </div>
+
+            <div class="mini-metrics">
+              <article>
+                <strong id="severityValue">Critical</strong>
+                <span data-i18n="severityMetric">Severity</span>
+              </article>
+              <article>
+                <strong id="confidenceMetricValue">84%</strong>
+                <span data-i18n="confidenceMetric">Confidence</span>
+              </article>
+              <article>
+                <strong id="lastUpdatedValue">--:--</strong>
+                <span data-i18n="updatedMetric">Updated</span>
+              </article>
+            </div>
+
+            <div class="hero-actions actions-stack">
+              <button id="analyzeDemoBtn" type="button" class="primary-btn" data-i18n="runDemo">Запустить демо-анализ</button>
+              <button id="loadScenarioBtn" type="button" class="secondary-btn" data-i18n="loadScenario">Загрузить сценарий атаки</button>
+              <button id="exportReportBtn" type="button" class="secondary-btn" data-i18n="exportReport">Экспорт отчета</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <div class="scenario-row">
+        <button type="button" class="scenario-chip active" data-scenario="phishing">Phishing</button>
+        <button type="button" class="scenario-chip" data-scenario="ransomware">Ransomware</button>
+        <button type="button" class="scenario-chip" data-scenario="deepfake">Deepfake</button>
+        <button id="resetFormBtn" type="button" class="scenario-chip bright" data-i18n="resetBtn">Сбросить</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel panel-form">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="analysisLabel">Threat Analysis</p>
+            <h3 data-i18n="analysisTitle">Анализ события</h3>
+          </div>
+          <span class="panel-chip" data-i18n="mvpChip">MVP with open data logic</span>
+        </div>
+
+        <form id="threatForm" class="threat-form">
+          <label>
+            <span data-i18n="threatType">Тип угрозы</span>
+            <select id="threatType">
+              <option value="phishing" data-i18n="phishing">Фишинг</option>
+              <option value="ransomware" data-i18n="ransomware">Ransomware</option>
+              <option value="deepfake" data-i18n="deepfake">Deepfake</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="sourceRegion">Регион / источник</span>
+            <select id="sourceRegion">
+              <option value="uz" data-i18n="regionUz">Узбекистан</option>
+              <option value="cis" data-i18n="regionCis">СНГ</option>
+              <option value="global" data-i18n="regionGlobal">Глобальный источник</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="anomalyRate">Аномалия трафика (%)</span>
+            <input id="anomalyRate" type="range" min="0" max="100" value="68">
+            <strong id="anomalyValue">68%</strong>
+          </label>
+
+          <label>
+            <span data-i18n="credentialLeaks">Подозрительные попытки входа</span>
+            <input id="loginAttempts" type="number" min="0" max="200" value="14">
+          </label>
+
+          <label>
+            <span data-i18n="aiConfidence">Уверенность модели (%)</span>
+            <input id="modelConfidence" type="range" min="50" max="99" value="84">
+            <strong id="confidenceValue">84%</strong>
+          </label>
+
+          <label>
+            <span data-i18n="signalText">Текстовый сигнал</span>
+            <textarea id="signalText" rows="5" data-i18n-placeholder="signalPlaceholder">URGENT: reset your corporate password within 15 minutes to avoid account suspension.</textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn wide" data-i18n="analyzeBtn">Оценить риск</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel panel-results">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="insightsLabel">AI Insights</p>
+            <h3 data-i18n="insightsTitle">Результаты анализа</h3>
+          </div>
+          <span id="threatBadge" class="panel-chip critical" data-i18n="criticalThreat">Critical</span>
+        </div>
+
+        <div class="results-grid">
+          <article class="result-card">
+            <p class="card-label" data-i18n="predictionLabel">Прогноз инцидента</p>
+            <h4 id="predictionTitle" data-i18n="predictionTitleHigh">Вероятна эскалация в течение 24 часов</h4>
+            <p id="predictionText" class="muted" data-i18n="predictionTextHigh">
+              Комбинация фишингового контента, всплеска аномалий и высокой уверенности модели указывает на активную фазу атаки.
+            </p>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="explainabilityLabel">Explainability</p>
+            <ul id="explanationsList" class="bullet-list"></ul>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="actionsLabel">Рекомендации</p>
+            <ul id="actionsList" class="bullet-list"></ul>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="dataSourcesLabel">Открытые источники</p>
+            <ul class="bullet-list">
+              <li data-i18n="sourceOne">Kaggle datasets для сетевых аномалий и phishing URLs</li>
+              <li data-i18n="sourceTwo">UZCERT / CERT advisories для локального контекста</li>
+              <li data-i18n="sourceThree">World Bank digital risk indicators для расширения модели</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel panel-table">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="monitoringLabel">Operational View</p>
+            <h3 data-i18n="monitoringTitle">Лента инцидентов</h3>
+          </div>
+          <span class="panel-chip" data-i18n="realTimeChip">Real-time simulation</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="colTime">Время</th>
+                <th data-i18n="colType">Тип</th>
+                <th data-i18n="colAsset">Актив</th>
+                <th data-i18n="colRisk">Риск</th>
+                <th data-i18n="colStatus">Статус</th>
+              </tr>
+            </thead>
+            <tbody id="incidentTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel-architecture">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="architectureLabel">Scalability</p>
+            <h3 data-i18n="architectureTitle">Архитектура платформы</h3>
+          </div>
+        </div>
+
+        <div class="architecture-grid">
+          <article>
+            <h4 data-i18n="archOneTitle">1. Ingestion Layer</h4>
+            <p data-i18n="archOneText">Email, network logs, API-интеграции с CERT и SIEM.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archTwoTitle">2. AI Detection</h4>
+            <p data-i18n="archTwoText">NLP-анализ текста, правила аномалий, скоринговый движок.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archThreeTitle">3. Decision Engine</h4>
+            <p data-i18n="archThreeText">Приоритизация инцидентов, рекомендации и автоматизация response.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archFourTitle">4. Dashboard & API</h4>
+            <p data-i18n="archFourText">Web/mobile интерфейс, экспорт отчетов, подключение новых моделей.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
