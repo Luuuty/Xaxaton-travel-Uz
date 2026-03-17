@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberShield AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="app-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div>
+          <p class="eyebrow" data-i18n="brandTag">AI platform for cyber resilience</p>
+          <h1 data-i18n="heroTitle">CyberShield AI</h1>
+        </div>
+        <div class="toolbar">
+          <button id="themeToggle" type="button" class="ghost-btn" aria-label="Toggle theme">рџЊ“</button>
+          <label class="language-switcher">
+            <span data-i18n="languageLabel">Language</span>
+            <select id="languageSelect" aria-label="Language switcher">
+              <option value="ru">RU</option>
+              <option value="uz">UZ</option>
+              <option value="en">EN</option>
+            </select>
+          </label>
+        </div>
+      </nav>
+
+      <section class="hero-grid neon-layout">
+        <div class="map-panel">
+          <div class="map-scan"></div>
+          <div class="map-header">
+            <p class="eyebrow accent" data-i18n="heroBadge">Hackathon MVP</p>
+            <h2 class="pixel-title" data-i18n="heroSubtitle">РџР»Р°С‚С„РѕСЂРјР° РґР»СЏ Р°РЅР°Р»РёР·Р°, РїСЂРµРґСЃРєР°Р·Р°РЅРёСЏ Рё РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РєРёР±РµСЂСѓРіСЂРѕР·</h2>
+            <p class="hero-text" data-i18n="heroText">
+              РџСЂРѕС‚РѕС‚РёРї Р°РЅР°Р»РёР·РёСЂСѓРµС‚ С„РёС€РёРЅРі, ransomware Рё deepfake-СЃРёРіРЅР°Р»С‹, РѕС†РµРЅРёРІР°РµС‚ СЂРёСЃРє РёРЅС†РёРґРµРЅС‚Р° Рё РІС‹РґР°РµС‚ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РґРµР№СЃС‚РІРёСЏ РґР»СЏ SOC-РєРѕРјР°РЅРґС‹.
+            </p>
+          </div>
+
+          <div class="map-stage" aria-hidden="true">
+            <div class="map-caption-row">
+              <span id="mapLocaleLabel" class="map-caption">RU Threat Sphere</span>
+              <span id="mapTargetLabel" class="map-caption accent">Eurasia sector</span>
+            </div>
+
+            <div class="threat-globe active" data-map="ru">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1"></span>
+                <span class="node n2 active"></span>
+                <span class="node n3"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="threat-globe" data-map="en">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1 active"></span>
+                <span class="node n2"></span>
+                <span class="node n3"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="threat-globe" data-map="uz">
+              <div class="globe-shell">
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+                <span class="orbit orbit-3"></span>
+                <span class="globe-core"></span>
+                <span class="node n1"></span>
+                <span class="node n2"></span>
+                <span class="node n3 active"></span>
+                <span class="node n4"></span>
+                <span class="node n5"></span>
+                <span class="link l1"></span>
+                <span class="link l2"></span>
+                <span class="link l3"></span>
+              </div>
+            </div>
+
+            <div class="signal-legend">
+              <span class="legend-pill" data-signal="email" data-i18n="legendEmail">Email</span>
+              <span class="legend-pill" data-signal="identity" data-i18n="legendIdentity">Identity</span>
+              <span class="legend-pill" data-signal="network" data-i18n="legendNetwork">Network</span>
+              <span class="legend-pill" data-signal="voice" data-i18n="legendVoice">Voice</span>
+              <span class="legend-pill" data-signal="endpoint" data-i18n="legendEndpoint">Endpoint</span>
+              <span class="legend-pill" data-signal="cloud" data-i18n="legendCloud">Cloud</span>
+              <span class="legend-pill" data-signal="dns" data-i18n="legendDNS">DNS</span>
+              <span class="legend-pill" data-signal="app" data-i18n="legendApp">App/API</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="node-card">
+          <div class="node-media">
+            <div class="node-media-overlay"></div>
+            <p id="activeCenterRegion" class="node-region">UZ-CERT</p>
+          </div>
+          <div class="node-body">
+            <p class="eyebrow" data-i18n="liveScore">Live Threat Score</p>
+            <h3 id="activeCenterTitle" class="pixel-card-title">Phishing Node (UZ)</h3>
+            <p id="activeCenterMeta" class="muted">mail-gateway-live / regional anomaly cluster</p>
+
+            <div class="score-card compact">
+              <div class="score-ring" id="scoreRing">
+                <span id="riskScore">72</span>
+              </div>
+              <div class="score-copy">
+                <p id="riskLevel" class="risk-level critical" data-i18n="riskHigh">Р’С‹СЃРѕРєРёР№ СЂРёСЃРє</p>
+                <p id="riskSummary" class="muted" data-i18n="defaultSummary">
+                  РћР±РЅР°СЂСѓР¶РµРЅР° Р°РЅРѕРјР°Р»СЊРЅР°СЏ Р°РєС‚РёРІРЅРѕСЃС‚СЊ РІ РїРѕС‡С‚РѕРІРѕРј С‚СЂР°С„РёРєРµ Рё РїРѕРїС‹С‚РєР° Р·Р°РїСѓСЃРєР° РїРѕРґРѕР·СЂРёС‚РµР»СЊРЅРѕРіРѕ С„Р°Р№Р»Р°.
+                </p>
+              </div>
+            </div>
+
+            <div class="mini-metrics">
+              <article>
+                <strong id="severityValue">Critical</strong>
+                <span data-i18n="severityMetric">Severity</span>
+              </article>
+              <article>
+                <strong id="confidenceMetricValue">84%</strong>
+                <span data-i18n="confidenceMetric">Confidence</span>
+              </article>
+              <article>
+                <strong id="lastUpdatedValue">--:--</strong>
+                <span data-i18n="updatedMetric">Updated</span>
+              </article>
+            </div>
+
+            <div class="hero-actions actions-stack">
+              <button id="analyzeDemoBtn" type="button" class="primary-btn" data-i18n="runDemo">Р—Р°РїСѓСЃС‚РёС‚СЊ РґРµРјРѕ-Р°РЅР°Р»РёР·</button>
+              <button id="loadScenarioBtn" type="button" class="secondary-btn" data-i18n="loadScenario">Р—Р°РіСЂСѓР·РёС‚СЊ СЃС†РµРЅР°СЂРёР№ Р°С‚Р°РєРё</button>
+              <button id="exportReportBtn" type="button" class="secondary-btn" data-i18n="exportReport">Р­РєСЃРїРѕСЂС‚ РѕС‚С‡РµС‚Р°</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <div class="scenario-row">
+        <button type="button" class="scenario-chip active" data-scenario="phishing">Phishing</button>
+        <button type="button" class="scenario-chip" data-scenario="ransomware">Ransomware</button>
+        <button type="button" class="scenario-chip" data-scenario="deepfake">Deepfake</button>
+        <button id="resetFormBtn" type="button" class="scenario-chip bright" data-i18n="resetBtn">РЎР±СЂРѕСЃРёС‚СЊ</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <div class="utility-grid">
+        <section class="panel panel-quick">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow" data-i18n="quickScanTitle">Quick Scan</p>
+              <h3 data-i18n="quickScanSubtitle">URL / File check</h3>
+            </div>
+            <span class="panel-chip">Sandbox</span>
+          </div>
+          <form id="quickScanForm" class="quick-scan-form">
+            <label>
+              <span data-i18n="quickScanUrlLabel">URL to scan</span>
+              <input id="scanUrl" type="url" data-i18n-placeholder="quickScanUrlLabel" placeholder="https://example.com/suspicious" required>
+            </label>
+            <label class="file-label">
+              <span data-i18n="quickScanFileLabel">Attach file (simulated)</span>
+              <input id="scanFile" type="file" />
+            </label>
+            <button type="submit" class="primary-btn" data-i18n="quickScanButton">Scan now</button>
+          </form>
+          <div id="quickScanResult" class="quick-result muted" data-i18n="quickScanAwaiting">Awaiting input…</div>
+        </section>
+
+        <section class="panel panel-actions">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow" data-i18n="socActionsTitle">SOC Actions</p>
+              <h3 data-i18n="socActionsSubtitle">One-click playbook</h3>
+            </div>
+          </div>
+          <div class="actions-list">
+            <label><input type="checkbox" class="soc-action" value="isolate"> <span data-i18n="actionIsolate">Isolate host</span></label>
+            <label><input type="checkbox" class="soc-action" value="block"> <span data-i18n="actionBlock">Block domain / URL</span></label>
+            <label><input type="checkbox" class="soc-action" value="notify"> <span data-i18n="actionNotify">Notify affected users</span></label>
+            <label><input type="checkbox" class="soc-action" value="ticket"> <span data-i18n="actionTicket">Create incident ticket</span></label>
+          </div>
+          <button id="runActionsBtn" type="button" class="secondary-btn" data-i18n="actionExecute">Execute actions</button>
+          <div id="actionsStatus" class="muted" data-i18n="actionStatusIdle">Not started.</div>
+        </section>
+
+        <section class="panel panel-metrics">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow" data-i18n="metricsTitle">Metrics</p>
+              <h3 data-i18n="metricsSubtitle">Last 24h</h3>
+            </div>
+            <span id="apiHealth" class="panel-chip" data-i18n="apiLabel">API: —</span>
+          </div>
+          <div class="metric-grid">
+            <article>
+              <p class="card-label" data-i18n="metricPhishingLabel">Phishing blocked</p>
+              <strong id="metricPhishing">128</strong>
+            </article>
+            <article>
+              <p class="card-label" data-i18n="metricRansomwareLabel">Ransomware contained</p>
+              <strong id="metricRansomware">34</strong>
+            </article>
+            <article>
+              <p class="card-label" data-i18n="metricMttrLabel">Mean response (min)</p>
+              <strong id="metricMTTR">11</strong>
+            </article>
+          </div>
+        </section>
+      </div>
+      <section class="panel panel-form">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="analysisLabel">Threat Analysis</p>
+            <h3 data-i18n="analysisTitle">РђРЅР°Р»РёР· СЃРѕР±С‹С‚РёСЏ</h3>
+          </div>
+          <span class="panel-chip" data-i18n="mvpChip">MVP with open data logic</span>
+        </div>
+
+        <form id="threatForm" class="threat-form">
+          <label>
+            <span data-i18n="threatType">РўРёРї СѓРіСЂРѕР·С‹</span>
+            <select id="threatType">
+              <option value="phishing" data-i18n="phishing">Р¤РёС€РёРЅРі</option>
+              <option value="ransomware" data-i18n="ransomware">Ransomware</option>
+              <option value="deepfake" data-i18n="deepfake">Deepfake</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="sourceRegion">Р РµРіРёРѕРЅ / РёСЃС‚РѕС‡РЅРёРє</span>
+            <select id="sourceRegion">
+              <option value="uz" data-i18n="regionUz">РЈР·Р±РµРєРёСЃС‚Р°РЅ</option>
+              <option value="cis" data-i18n="regionCis">РЎРќР“</option>
+              <option value="global" data-i18n="regionGlobal">Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ РёСЃС‚РѕС‡РЅРёРє</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="anomalyRate">РђРЅРѕРјР°Р»РёСЏ С‚СЂР°С„РёРєР° (%)</span>
+            <input id="anomalyRate" type="range" min="0" max="100" value="68">
+            <strong id="anomalyValue">68%</strong>
+          </label>
+
+          <label>
+            <span data-i18n="credentialLeaks">РџРѕРґРѕР·СЂРёС‚РµР»СЊРЅС‹Рµ РїРѕРїС‹С‚РєРё РІС…РѕРґР°</span>
+            <input id="loginAttempts" type="number" min="0" max="200" value="14">
+          </label>
+
+          <label>
+            <span data-i18n="aiConfidence">РЈРІРµСЂРµРЅРЅРѕСЃС‚СЊ РјРѕРґРµР»Рё (%)</span>
+            <input id="modelConfidence" type="range" min="50" max="99" value="84">
+            <strong id="confidenceValue">84%</strong>
+          </label>
+
+          <label>
+            <span data-i18n="signalText">РўРµРєСЃС‚РѕРІС‹Р№ СЃРёРіРЅР°Р»</span>
+            <textarea id="signalText" rows="5" data-i18n-placeholder="signalPlaceholder">URGENT: reset your corporate password within 15 minutes to avoid account suspension.</textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn wide" data-i18n="analyzeBtn">РћС†РµРЅРёС‚СЊ СЂРёСЃРє</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel panel-results">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="insightsLabel">AI Insights</p>
+            <h3 data-i18n="insightsTitle">Р РµР·СѓР»СЊС‚Р°С‚С‹ Р°РЅР°Р»РёР·Р°</h3>
+          </div>
+          <span id="threatBadge" class="panel-chip critical" data-i18n="criticalThreat">Critical</span>
+        </div>
+
+        <div class="results-grid">
+          <article class="result-card">
+            <p class="card-label" data-i18n="predictionLabel">РџСЂРѕРіРЅРѕР· РёРЅС†РёРґРµРЅС‚Р°</p>
+            <h4 id="predictionTitle" data-i18n="predictionTitleHigh">Р’РµСЂРѕСЏС‚РЅР° СЌСЃРєР°Р»Р°С†РёСЏ РІ С‚РµС‡РµРЅРёРµ 24 С‡Р°СЃРѕРІ</h4>
+            <p id="predictionText" class="muted" data-i18n="predictionTextHigh">
+              РљРѕРјР±РёРЅР°С†РёСЏ С„РёС€РёРЅРіРѕРІРѕРіРѕ РєРѕРЅС‚РµРЅС‚Р°, РІСЃРїР»РµСЃРєР° Р°РЅРѕРјР°Р»РёР№ Рё РІС‹СЃРѕРєРѕР№ СѓРІРµСЂРµРЅРЅРѕСЃС‚Рё РјРѕРґРµР»Рё СѓРєР°Р·С‹РІР°РµС‚ РЅР° Р°РєС‚РёРІРЅСѓСЋ С„Р°Р·Сѓ Р°С‚Р°РєРё.
+            </p>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="explainabilityLabel">Explainability</p>
+            <ul id="explanationsList" class="bullet-list"></ul>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="actionsLabel">Р РµРєРѕРјРµРЅРґР°С†РёРё</p>
+            <ul id="actionsList" class="bullet-list"></ul>
+          </article>
+
+          <article class="result-card">
+            <p class="card-label" data-i18n="dataSourcesLabel">РћС‚РєСЂС‹С‚С‹Рµ РёСЃС‚РѕС‡РЅРёРєРё</p>
+            <ul class="bullet-list">
+              <li data-i18n="sourceOne">Kaggle datasets РґР»СЏ СЃРµС‚РµРІС‹С… Р°РЅРѕРјР°Р»РёР№ Рё phishing URLs</li>
+              <li data-i18n="sourceTwo">UZCERT / CERT advisories РґР»СЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ РєРѕРЅС‚РµРєСЃС‚Р°</li>
+              <li data-i18n="sourceThree">World Bank digital risk indicators РґР»СЏ СЂР°СЃС€РёСЂРµРЅРёСЏ РјРѕРґРµР»Рё</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel panel-table">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="monitoringLabel">Operational View</p>
+            <h3 data-i18n="monitoringTitle">Р›РµРЅС‚Р° РёРЅС†РёРґРµРЅС‚РѕРІ</h3>
+          </div>
+          <span class="panel-chip" data-i18n="realTimeChip">Real-time simulation</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="colTime">Р’СЂРµРјСЏ</th>
+                <th data-i18n="colType">РўРёРї</th>
+                <th data-i18n="colAsset">РђРєС‚РёРІ</th>
+                <th data-i18n="colRisk">Р РёСЃРє</th>
+                <th data-i18n="colStatus">РЎС‚Р°С‚СѓСЃ</th>
+              </tr>
+            </thead>
+            <tbody id="incidentTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel-architecture">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="architectureLabel">Scalability</p>
+            <h3 data-i18n="architectureTitle">РђСЂС…РёС‚РµРєС‚СѓСЂР° РїР»Р°С‚С„РѕСЂРјС‹</h3>
+          </div>
+        </div>
+
+        <div class="architecture-grid">
+          <article>
+            <h4 data-i18n="archOneTitle">1. Ingestion Layer</h4>
+            <p data-i18n="archOneText">Email, network logs, API-РёРЅС‚РµРіСЂР°С†РёРё СЃ CERT Рё SIEM.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archTwoTitle">2. AI Detection</h4>
+            <p data-i18n="archTwoText">NLP-Р°РЅР°Р»РёР· С‚РµРєСЃС‚Р°, РїСЂР°РІРёР»Р° Р°РЅРѕРјР°Р»РёР№, СЃРєРѕСЂРёРЅРіРѕРІС‹Р№ РґРІРёР¶РѕРє.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archThreeTitle">3. Decision Engine</h4>
+            <p data-i18n="archThreeText">РџСЂРёРѕСЂРёС‚РёР·Р°С†РёСЏ РёРЅС†РёРґРµРЅС‚РѕРІ, СЂРµРєРѕРјРµРЅРґР°С†РёРё Рё Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЏ response.</p>
+          </article>
+          <article>
+            <h4 data-i18n="archFourTitle">4. Dashboard & API</h4>
+            <p data-i18n="archFourText">Web/mobile РёРЅС‚РµСЂС„РµР№СЃ, СЌРєСЃРїРѕСЂС‚ РѕС‚С‡РµС‚РѕРІ, РїРѕРґРєР»СЋС‡РµРЅРёРµ РЅРѕРІС‹С… РјРѕРґРµР»РµР№.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js?v=live2"></script>
+</body>
+</html>
+
