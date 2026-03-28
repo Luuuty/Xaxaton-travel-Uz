@@ -5,18 +5,6 @@
       "PackagePath": "staticwebassets\\app.js"
     },
     {
-      "Id": "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\wwwroot\\assets\\hero-en.svg",
-      "PackagePath": "staticwebassets\\assets\\hero-en.svg"
-    },
-    {
-      "Id": "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\wwwroot\\assets\\hero-ru.svg",
-      "PackagePath": "staticwebassets\\assets\\hero-ru.svg"
-    },
-    {
-      "Id": "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\wwwroot\\assets\\hero-uz.svg",
-      "PackagePath": "staticwebassets\\assets\\hero-uz.svg"
-    },
-    {
       "Id": "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },

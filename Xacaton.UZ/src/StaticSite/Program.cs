@@ -7,8 +7,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Web;
 using System.Net.Http.Headers;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<UrlDatasetCache>();
 var app = builder.Build();
 
 // Serve index.html + static assets from wwwroot
@@ -164,6 +166,7 @@ app.MapPost("/api/scan/url", async (ScanRequest request) =>
 
     int phishstatsHits7d = 0;
     int urlhausHits = 0;
+    bool datasetHit = false;
 
     // Phishstats check (7d)
     try
@@ -208,7 +211,15 @@ app.MapPost("/api/scan/url", async (ScanRequest request) =>
     }
     catch { }
 
+    // Offline dataset (Malicious and Benign URL) lookup by host if loaded
+    var cache = app.Services.GetRequiredService<UrlDatasetCache>();
+    if (cache.MaliciousHosts.Count > 0 && cache.MaliciousHosts.Contains(host))
+    {
+        datasetHit = true;
+    }
+
     var score = Math.Clamp(15 + phishstatsHits7d * 18 + urlhausHits * 22, 1, 98);
+    if (datasetHit) score = Math.Clamp(score + 25, 1, 99);
     var severity = score >= 75 ? "high" : score >= 50 ? "medium" : "low";
 
     return Results.Ok(new
@@ -216,6 +227,7 @@ app.MapPost("/api/scan/url", async (ScanRequest request) =>
         host,
         phishstatsHits7d,
         urlhausHits,
+        datasetHit,
         score,
         severity,
         recommendation = severity switch
@@ -441,3 +453,51 @@ internal record AnalyzeRequest(
     [property: JsonPropertyName("loginAttempts")] int LoginAttempts,
     [property: JsonPropertyName("confidence")] int Confidence,
     [property: JsonPropertyName("signalText")] string SignalText);
+
+internal class UrlDatasetCache
+{
+    public HashSet<string> MaliciousHosts { get; } = new(StringComparer.OrdinalIgnoreCase);
+
+    public UrlDatasetCache()
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "data", "url_dataset.csv");
+        if (!File.Exists(path)) return;
+
+        try
+        {
+            foreach (var line in File.ReadLines(path))
+            {
+                // Expect format: url,label   where label is "malicious" or "benign"
+                var parts = line.Split(',', 3, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length < 2) continue;
+                var url = parts[0].Trim().Trim('"');
+                var label = parts[1].Trim().Trim('"').ToLowerInvariant();
+
+                var isMalicious = label == "malicious" || label == "phishing" || label == "spam" || label == "bad";
+                if (!isMalicious)
+                {
+                    if (int.TryParse(label, out var numLabel))
+                        isMalicious = numLabel == 1;
+                }
+                if (!isMalicious) continue;
+
+                // ensure absolute URI
+                if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+                    !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                {
+                    url = "http://" + url;
+                }
+
+                if (Uri.TryCreate(url, UriKind.Absolute, out var uri) && !string.IsNullOrEmpty(uri.Host))
+                {
+                    MaliciousHosts.Add(uri.Host);
+                }
+            }
+            Console.WriteLine($"[Dataset] Loaded {MaliciousHosts.Count} malicious hosts from url_dataset.csv");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Dataset] Failed to load url_dataset.csv: {ex.Message}");
+        }
+    }
+}

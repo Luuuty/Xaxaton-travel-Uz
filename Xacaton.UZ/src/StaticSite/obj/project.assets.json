@@ -21,7 +21,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\NuGet.Config",
-        "C:\\Users\\majda\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\majda\\OneDrive\\Desktop\\Xacaton.UZ\\src\\StaticSite\\.appdata\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
